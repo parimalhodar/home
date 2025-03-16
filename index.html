@@ -459,8 +459,8 @@
 
         /* Contact Section */
         .contact {
-            padding: 40px 0; /* Reduced padding */
-            background: rgba(20, 30, 48, 0.9); /* Lighter background */
+            padding: 40px 0;
+            background: rgba(20, 30, 48, 0.9);
             text-align: center;
         }
         
@@ -471,13 +471,13 @@
         }
         
         .contact-title {
-            font-size: 1.8rem; /* Smaller font size */
+            font-size: 1.8rem;
             margin-bottom: 15px;
             color: var(--secondary-color);
         }
         
         .contact-text {
-            font-size: 0.95rem; /* Smaller font size */
+            font-size: 0.95rem;
             opacity: 0.8;
             margin-bottom: 20px;
         }
@@ -495,7 +495,7 @@
             border-radius: 8px;
             background: rgba(255, 255, 255, 0.1);
             color: var(--light-text);
-            font-size: 0.9rem; /* Smaller font size */
+            font-size: 0.9rem;
         }
         
         .contact-form input::placeholder,
@@ -532,6 +532,34 @@
             text-align: center;
             font-size: 0.9rem;
             color: rgba(255, 255, 255, 0.7);
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .footer-content a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-content a:hover {
+            color: var(--primary-color);
+        }
+
+        .disclaimer {
+            font-size: 0.8rem;
+            opacity: 0.7;
+            margin-top: 10px;
+        }
+
+        .developer-credit {
+            font-size: 0.8rem;
+            opacity: 0.7;
+            margin-top: 10px;
         }
     </style>
 </head>
@@ -678,7 +706,15 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-            <p>&copy; 2025 My Legal Tools. All rights reserved.</p>
+            <div class="footer-content">
+                <p>&copy; 2025 My Legal Tools. All rights reserved.</p>
+                <p class="disclaimer">
+                    Disclaimer: This tool is designed to assist with basic court fee estimations and is not legally binding. The results may not reflect the latest legal updates, and we do not guarantee accuracy. Users should confirm all calculations with official sources. The developers are not liable for any errors or decisions based on this tool.
+                </p>
+                <p class="developer-credit">
+                    Designed and Developed by <a href="https://github.com/parimalhodar" target="_blank">Parimal J. Hodar</a>
+                </p>
+            </div>
         </div>
     </footer>
 
