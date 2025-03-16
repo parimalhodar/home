@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Legal Tools | Advanced</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     <style>
         /* Reset and Global Styles */
         *, *::before, *::after {
@@ -11,413 +13,701 @@
             margin: 0;
             padding: 0;
         }
+        
+        :root {
+            --primary-color: #3a7bd5;
+            --secondary-color: #00d2ff;
+            --dark-bg: #1a1f35;
+            --light-text: #f5f5f5;
+            --accent-color: #ff6b6b;
+            --card-bg: rgba(255, 255, 255, 0.08);
+            --transition: all 0.3s ease;
+            --shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+        
         body {
-            font-family: 'Roboto', sans-serif;
-            background: linear-gradient(135deg, #2c3e50, #34495e);
-            color: #ecf0f1;
-            display: flex;
-            flex-direction: column;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, var(--dark-bg), #111827);
+            color: var(--light-text);
+            line-height: 1.6;
             min-height: 100vh;
             overflow-x: hidden;
         }
 
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
         /* Navigation Bar */
         .navbar {
-            position: sticky;
+            position: fixed;
             top: 0;
+            left: 0;
             width: 100%;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(20, 30, 48, 0.95);
             backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 15px 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 15px 0;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+        
+        .navbar.scrolled {
+            padding: 10px 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .nav-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            z-index: 1000;
+            width: 90%;
+            margin: 0 auto;
         }
-        .navbar h2 {
-            font-size: 20px;
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+        
+        .logo i {
+            font-size: 24px;
+            color: var(--secondary-color);
+            margin-right: 10px;
+        }
+        
+        .logo h2 {
+            font-size: 22px;
             font-weight: 600;
             color: #fff;
+            letter-spacing: 0.5px;
         }
-        .navbar nav {
+        
+        .nav-links {
             display: flex;
+            list-style: none;
         }
-        .navbar nav a {
+        
+        .nav-links li {
+            margin-left: 25px;
+        }
+        
+        .nav-links a {
             color: #fff;
             text-decoration: none;
-            margin-left: 15px;
             font-size: 16px;
-            transition: color 0.3s ease;
+            font-weight: 500;
+            position: relative;
+            padding: 5px 0;
+            transition: var(--transition);
         }
-        .navbar nav a:hover {
-            color: #3498db;
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            transition: var(--transition);
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .nav-links a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            z-index: 100;
+        }
+        
+        .hamburger div {
+            width: 25px;
+            height: 3px;
+            background-color: #fff;
+            margin: 5px;
+            transition: var(--transition);
         }
 
         /* Hero Section */
         .hero {
             width: 100%;
-            height: 40vh;
+            height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
+            position: relative;
+            padding-top: 60px;
             text-align: center;
-            background-image: url('https://source.unsplash.com/1920x1080/?legal,law');
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://source.unsplash.com/1920x1080/?courthouse,legal');
             background-size: cover;
             background-position: center;
+            background-attachment: fixed;
         }
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-        }
+        
         .hero-content {
             position: relative;
             z-index: 1;
-            max-width: 80%;
+            max-width: 800px;
+            padding: 0 20px;
         }
-        .hero-content h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
+        
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
-        .hero-content p {
-            font-size: 1rem;
+        
+        .hero-subtitle {
+            font-size: 1.2rem;
+            font-weight: 300;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        .hero-btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border-radius: 30px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+        }
+        
+        .hero-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.25);
         }
 
-        /* Main Content */
-        .main-content {
-            padding: 30px 20px;
+        /* Features Section */
+        .features {
+            padding: 80px 0;
             text-align: center;
         }
-        .main-content h2 {
-            font-size: 1.8rem;
+        
+        .section-title {
+            font-size: 2.5rem;
             margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
         }
-        .btn-container {
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+        }
+        
+        .section-subtitle {
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto 50px;
+            opacity: 0.8;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .feature-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 30px;
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: var(--shadow);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            border-color: rgba(58, 123, 213, 0.3);
+        }
+        
+        .feature-icon {
+            font-size: 40px;
+            margin-bottom: 20px;
+            color: var(--secondary-color);
+        }
+        
+        .feature-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .feature-description {
+            font-size: 0.95rem;
+            opacity: 0.8;
+        }
+
+        /* Tools Section */
+        .tools {
+            padding: 80px 0;
+            background: linear-gradient(135deg, rgba(26, 31, 53, 0.8), rgba(17, 24, 39, 0.8));
+        }
+        
+        .tools-container {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 15px;
-            margin-top: 20px;
         }
-        .btn {
+        
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            width: 100%;
+            margin-top: 40px;
+        }
+        
+        .tool-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: var(--shadow);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .tool-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            border-color: rgba(58, 123, 213, 0.2);
+        }
+        
+        .tool-image {
+            height: 180px;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        .tool-image i {
+            font-size: 60px;
+            color: var(--secondary-color);
+        }
+        
+        .tool-content {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .tool-title {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--light-text);
+        }
+        
+        .tool-description {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+        
+        .tool-btn {
+            display: inline-block;
             padding: 12px 25px;
-            font-size: 16px;
-            background: linear-gradient(135deg, #3498db, #2980b9);
-            color: #fff;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border-radius: 30px;
+            font-weight: 500;
             text-decoration: none;
-            width: 90%;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.9rem;
             text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
-        .btn:hover {
+        
+        .tool-btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .tool-btn.disabled {
+            background: linear-gradient(90deg, #666, #888);
+            cursor: not-allowed;
+        }
+        
+        .tool-btn.disabled:hover {
+            transform: none;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 80px 0;
+            position: relative;
+        }
+        
+        .testimonial-container {
+            max-width: 800px;
+            margin: 0 auto;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .testimonial-slider {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+        
+        .testimonial {
+            min-width: 100%;
+            padding: 30px;
+            text-align: center;
+            opacity: 0.5;
+            transition: var(--transition);
+        }
+        
+        .testimonial.active {
+            opacity: 1;
+        }
+        
+        .testimonial-text {
+            font-size: 1.1rem;
+            font-style: italic;
+            margin-bottom: 20px;
+            position: relative;
+            padding: 0 30px;
+        }
+        
+        .testimonial-text::before,
+        .testimonial-text::after {
+            content: '"';
+            font-size: 50px;
+            font-family: serif;
+            color: var(--secondary-color);
+            opacity: 0.3;
+            position: absolute;
+        }
+        
+        .testimonial-text::before {
+            top: -20px;
+            left: 0;
+        }
+        
+        .testimonial-text::after {
+            bottom: -40px;
+            right: 0;
+        }
+        
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--secondary-color);
+        }
+        
+        .testimonial-role {
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+        
+        .testimonial-dots {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.3);
+            margin: 0 5px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .dot.active {
+            background-color: var(--secondary-color);
         }
 
         /* Contact Section */
-        .contact-section {
-            padding: 30px 20px;
-            background: rgba(255, 255, 255, 0.1);
-            margin: 20px 0;
-            border-radius: 10px;
+        .contact {
+            padding: 40px 0; /* Reduced padding */
+            background: rgba(20, 30, 48, 0.9); /* Lighter background */
+            text-align: center;
         }
-        .contact-section h2 {
-            font-size: 1.8rem;
+        
+        .contact-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .contact-title {
+            font-size: 1.8rem; /* Smaller font size */
+            margin-bottom: 15px;
+            color: var(--secondary-color);
+        }
+        
+        .contact-text {
+            font-size: 0.95rem; /* Smaller font size */
+            opacity: 0.8;
             margin-bottom: 20px;
         }
+        
         .contact-form {
             display: flex;
             flex-direction: column;
             gap: 15px;
-            max-width: 500px;
-            margin: 0 auto;
         }
-        .contact-form input, .contact-form textarea {
+        
+        .contact-form input,
+        .contact-form textarea {
             padding: 10px;
             border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 5px;
+            border-radius: 8px;
             background: rgba(255, 255, 255, 0.1);
-            color: #fff;
-            font-size: 16px;
+            color: var(--light-text);
+            font-size: 0.9rem; /* Smaller font size */
         }
-        .contact-form input::placeholder, .contact-form textarea::placeholder {
-            color: #bdc3c7;
+        
+        .contact-form input::placeholder,
+        .contact-form textarea::placeholder {
+            color: rgba(255, 255, 255, 0.6);
         }
+        
+        .contact-form textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+        
         .contact-form button {
             padding: 12px 25px;
-            font-size: 16px;
-            background: linear-gradient(135deg, #3498db, #2980b9);
-            color: #fff;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            color: white;
             border: none;
             border-radius: 8px;
+            font-weight: 500;
             cursor: pointer;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+            transition: var(--transition);
+            box-shadow: var(--shadow);
         }
+        
         .contact-form button:hover {
             transform: translateY(-3px);
-            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.4);
-        }
-
-        /* FAQ Section */
-        .faq-section {
-            padding: 30px 20px;
-            background: rgba(255, 255, 255, 0.1);
-            margin: 20px 0;
-            border-radius: 10px;
-        }
-        .faq-section h2 {
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-        }
-        .faq-item {
-            margin-bottom: 15px;
-        }
-        .faq-item h3 {
-            font-size: 1.2rem;
-            margin-bottom: 10px;
-        }
-        .faq-item p {
-            font-size: 1rem;
-            color: #bdc3c7;
-        }
-
-        /* Testimonials Section */
-        .testimonials-section {
-            padding: 30px 20px;
-            background: rgba(255, 255, 255, 0.1);
-            margin: 20px 0;
-            border-radius: 10px;
-        }
-        .testimonials-section h2 {
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-        }
-        .testimonial-item {
-            margin-bottom: 15px;
-        }
-        .testimonial-item p {
-            font-size: 1rem;
-            color: #bdc3c7;
-        }
-        .testimonial-item span {
-            font-size: 0.9rem;
-            color: #3498db;
-        }
-
-        /* Newsletter Section */
-        .newsletter-section {
-            padding: 30px 20px;
-            background: rgba(255, 255, 255, 0.1);
-            margin: 20px 0;
-            border-radius: 10px;
-        }
-        .newsletter-section h2 {
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-        }
-        .newsletter-form {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            max-width: 500px;
-            margin: 0 auto;
-        }
-        .newsletter-form input {
-            padding: 10px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 5px;
-            background: rgba(255, 255, 255, 0.1);
-            color: #fff;
-            font-size: 16px;
-        }
-        .newsletter-form input::placeholder {
-            color: #bdc3c7;
-        }
-        .newsletter-form button {
-            padding: 12px 25px;
-            font-size: 16px;
-            background: linear-gradient(135deg, #3498db, #2980b9);
-            color: #fff;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
-        }
-        .newsletter-form button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
         }
 
         /* Footer */
         footer {
-            margin-top: auto;
             padding: 20px 0;
+            background: rgba(20, 30, 48, 0.95);
             text-align: center;
-            background: linear-gradient(to right, #2c3e50, #1c2833);
-            color: #bdc3c7;
-            font-size: 12px;
-        }
-
-        /* Media Queries for Desktop */
-        @media (min-width: 768px) {
-            .navbar {
-                padding: 20px 50px;
-            }
-            .navbar h2 {
-                font-size: 28px;
-            }
-            .navbar nav a {
-                margin-left: 30px;
-                font-size: 18px;
-            }
-            .hero {
-                height: 60vh;
-            }
-            .hero-content {
-                max-width: 800px;
-            }
-            .hero-content h1 {
-                font-size: 4rem;
-                margin-bottom: 20px;
-            }
-            .hero-content p {
-                font-size: 1.2rem;
-            }
-            .main-content {
-                padding: 60px 50px;
-            }
-            .main-content h2 {
-                font-size: 2.5rem;
-                margin-bottom: 30px;
-            }
-            .btn-container {
-                flex-direction: row;
-                justify-content: center;
-                gap: 20px;
-                margin-top: 40px;
-            }
-            .btn {
-                padding: 18px 35px;
-                font-size: 18px;
-                width: auto;
-            }
-            .contact-section, .faq-section, .testimonials-section, .newsletter-section {
-                padding: 60px 50px;
-            }
-            .contact-form, .newsletter-form {
-                max-width: 600px;
-            }
-            footer {
-                padding: 30px 0;
-                font-size: 14px;
-            }
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
         }
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <div class="navbar">
-        <h2>My Legal Tools</h2>
-        <nav>
-            <a href="#">Home</a>
-            <a href="#">About</a>
-            <a href="#">Services</a>
-            <a href="#">Contact</a>
-        </nav>
-    </div>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <i class="fas fa-balance-scale"></i>
+                <h2>My Legal Tools</h2>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+    </nav>
 
+    <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
-            <h1>Empowering Legal Solutions</h1>
-            <p>Access advanced tools and calculators designed to simplify legal processes and calculations.</p>
+            <h1 class="hero-title">Empowering Legal Solutions</h1>
+            <p class="hero-subtitle">Access advanced tools and calculators designed to simplify legal processes and calculations.</p>
+            <a href="#tools" class="hero-btn">Explore Tools</a>
         </div>
     </section>
 
-    <main class="main-content">
-        <h2>Explore Our Tools</h2>
-        <p>Discover a range of powerful calculators and resources to assist you with legal matters.</p>
-        <div class="btn-container">
-            <a href="https://parimalhodar.github.io/courtfee/" class="btn">Court Fee / Advocate Fee Calculator</a>
-            <button class="btn" onclick="underConstruction()">Probate Calculator</button>
-            <button class="btn" onclick="underConstruction()">Calculator 1</button>
-            <button class="btn" onclick="underConstruction()">Calculator 2</button>
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">Our Features</h2>
+            <p class="section-subtitle">Discover the powerful features that make our tools stand out.</p>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fas fa-calculator feature-icon"></i>
+                    <h3 class="feature-title">Advanced Calculators</h3>
+                    <p class="feature-description">Accurate and easy-to-use calculators for legal fees, probate, and more.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-user-shield feature-icon"></i>
+                    <h3 class="feature-title">Secure & Reliable</h3>
+                    <p class="feature-description">Your data is safe with us. We prioritize security and privacy.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-clock feature-icon"></i>
+                    <h3 class="feature-title">Time-Saving</h3>
+                    <p class="feature-description">Streamline your legal processes and save valuable time.</p>
+                </div>
+            </div>
         </div>
-    </main>
-
-    <!-- Contact Section -->
-    <section class="contact-section">
-        <h2>Contact Us</h2>
-        <form class="contact-form">
-            <input type="text" placeholder="Your Name" required>
-            <input type="email" placeholder="Your Email" required>
-            <textarea placeholder="Your Message" rows="5" required></textarea>
-            <button type="submit">Send Message</button>
-        </form>
     </section>
 
-    <!-- FAQ Section -->
-    <section class="faq-section">
-        <h2>Frequently Asked Questions</h2>
-        <div class="faq-item">
-            <h3>How do I use the Court Fee Calculator?</h3>
-            <p>Simply input the required details such as case type, jurisdiction, and amount claimed, and the calculator will provide the estimated court fee.</p>
-        </div>
-        <div class="faq-item">
-            <h3>Is the Probate Calculator accurate?</h3>
-            <p>Yes, the Probate Calculator uses up-to-date legal guidelines to provide accurate estimates.</p>
-        </div>
-        <div class="faq-item">
-            <h3>Can I use these tools for free?</h3>
-            <p>Absolutely! All our tools are free to use and designed to help you with legal calculations.</p>
+    <!-- Tools Section -->
+    <section class="tools" id="tools">
+        <div class="container">
+            <h2 class="section-title">Our Tools</h2>
+            <p class="section-subtitle">Explore our range of legal tools and calculators.</p>
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <div class="tool-image">
+                        <i class="fas fa-gavel"></i>
+                    </div>
+                    <div class="tool-content">
+                        <h3 class="tool-title">Court Fee Calculator</h3>
+                        <p class="tool-description">Calculate court fees and advocate fees with ease.</p>
+                        <a href="https://parimalhodar.github.io/courtfee/" class="tool-btn">Use Tool</a>
+                    </div>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-image">
+                        <i class="fas fa-file-contract"></i>
+                    </div>
+                    <div class="tool-content">
+                        <h3 class="tool-title">Probate Calculator</h3>
+                        <p class="tool-description">Estimate probate fees and inheritance taxes.</p>
+                        <button class="tool-btn disabled">Coming Soon</button>
+                    </div>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-image">
+                        <i class="fas fa-balance-scale"></i>
+                    </div>
+                    <div class="tool-content">
+                        <h3 class="tool-title">Legal Aid Calculator</h3>
+                        <p class="tool-description">Determine eligibility for legal aid services.</p>
+                        <button class="tool-btn disabled">Coming Soon</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- Testimonials Section -->
-    <section class="testimonials-section">
-        <h2>What Our Users Say</h2>
-        <div class="testimonial-item">
-            <p>"The Court Fee Calculator saved me so much time and effort. Highly recommended!"</p>
-            <span>- John Doe</span>
-        </div>
-        <div class="testimonial-item">
-            <p>"I found the Probate Calculator to be very accurate and easy to use. Great tool!"</p>
-            <span>- Jane Smith</span>
-        </div>
-        <div class="testimonial-item">
-            <p>"This website is a lifesaver for anyone dealing with legal matters. Thank you!"</p>
-            <span>- Michael Brown</span>
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="section-title">What Our Users Say</h2>
+            <div class="testimonial-container">
+                <div class="testimonial-slider">
+                    <div class="testimonial active">
+                        <p class="testimonial-text">"
+                            The Court Fee Calculator saved me so much time and effort. Highly recommended!
+                        </p>
+                        <p class="testimonial-author">John Doe</p>
+                        <p class="testimonial-role">Lawyer</p>
+                    </div>
+                    <div class="testimonial">
+                        <p class="testimonial-text">"
+                            This website is a lifesaver for anyone dealing with legal matters. Thank you!
+                        </p>
+                        <p class="testimonial-author">Jane Smith</p>
+                        <p class="testimonial-role">Legal Consultant</p>
+                    </div>
+                </div>
+                <div class="testimonial-dots">
+                    <span class="dot active"></span>
+                    <span class="dot"></span>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- Newsletter Section -->
-    <section class="newsletter-section">
-        <h2>Subscribe to Our Newsletter</h2>
-        <form class="newsletter-form">
-            <input type="email" placeholder="Enter your email" required>
-            <button type="submit">Subscribe</button>
-        </form>
+    <!-- Contact Section -->
+    <section class="contact">
+        <div class="contact-container">
+            <h2 class="contact-title">Contact Us</h2>
+            <p class="contact-text">Have questions? Reach out to us and we'll get back to you shortly.</p>
+            <form class="contact-form">
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Your Email" required>
+                <textarea placeholder="Your Message" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
     </section>
 
+    <!-- Footer -->
     <footer>
-        <p>&copy; 2025 My Legal Tools. All rights reserved.</p>
+        <div class="container">
+            <p>&copy; 2025 My Legal Tools. All rights reserved.</p>
+        </div>
     </footer>
 
     <script>
-        function underConstruction() {
-            alert("This feature is under construction. Please check back later!");
+        // Testimonial Slider
+        const testimonials = document.querySelectorAll('.testimonial');
+        const dots = document.querySelectorAll('.dot');
+        let currentTestimonial = 0;
+
+        function showTestimonial(index) {
+            testimonials.forEach((testimonial, i) => {
+                testimonial.classList.toggle('active', i === index);
+            });
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === index);
+            });
         }
+
+        dots.forEach((dot, i) => {
+            dot.addEventListener('click', () => {
+                showTestimonial(i);
+            });
+        });
+
+        // Auto-slide testimonials
+        setInterval(() => {
+            currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+            showTestimonial(currentTestimonial);
+        }, 5000);
     </script>
 </body>
 </html>
