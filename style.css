@@ -1,0 +1,575 @@
+/* style.css - Revised for Clarity, Maintainability, and Accessibility */
+
+/* -------------------------------------------------------------------------- */
+/*  1. Root Variables (Theme Customization)                                    */
+/* -------------------------------------------------------------------------- */
+
+:root {
+    --primary-color: #3a6ea5;        /* Main brand color (e.g., blue) */
+    --primary-color-darker: #2c5682; /* Darker shade for hover effects */
+    --secondary-color: #f8f9fa;      /* Light background color */
+    --accent-color: #c2d6ea;         /* Subtle highlight color */
+    --text-color: #343a40;           /* Main text color (dark grey) */
+    --text-color-light: #6c757d;     /* Lighter text color (e.g., for footer) */
+    --bg-color: #f0f2f5;             /* Body background color */
+    --white: #fff;                  /* Pure white */
+    --border-radius: 8px;           /* Rounded corners for elements */
+    --box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
+    --transition-duration: 0.3s;     /* Default transition duration */
+    --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Consistent font */
+}
+
+/* -------------------------------------------------------------------------- */
+/*  2. Base Styles (Body, Typography)                                         */
+/* -------------------------------------------------------------------------- */
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-size: 16px; /* Base font size */
+    line-height: 1.6;
+    padding-bottom: 30px; /* Creates space at the bottom of the page */
+    transition: background-color var(--transition-duration), color var(--transition-duration); /* Smooth transition for theme changes */
+}
+
+/* Fade In Animation */
+body.fade-in {
+    animation: fadeIn 0.5s ease-in-out forwards;
+    opacity: 0; /* Start from transparent */
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+h1 {
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    transition: color var(--transition-duration);
+}
+
+h2 {
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--accent-color);
+    transition: color var(--transition-duration), border-color var(--transition-duration);
+}
+
+/* -------------------------------------------------------------------------- */
+/*  3. Container and Layout Styles                                          */
+/* -------------------------------------------------------------------------- */
+
+.container,
+.calculator-container {
+    max-width: 900px;
+    margin: 20px auto;
+    background-color: var(--white);
+    padding: 20px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    transition: all var(--transition-duration) ease;
+}
+
+/* -------------------------------------------------------------------------- */
+/*  4. Header Styles                                                          */
+/* -------------------------------------------------------------------------- */
+
+.header-section {
+    background-color: var(--primary-color);
+    color: var(--white);
+    padding: 20px;
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
+    margin: -20px -20px 20px -20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    transition: background-color var(--transition-duration), color var(--transition-duration);
+}
+
+.header-section::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    height: 100%;
+    width: 30%;
+    background: linear-gradient(135deg, transparent 50%, rgba(255, 255, 255, 0.1) 50%); /*  A subtle gradient overlay */
+}
+
+/* -------------------------------------------------------------------------- */
+/*  5. Calculator Selector (Home Page Buttons)                                 */
+/* -------------------------------------------------------------------------- */
+
+.calculator-selector {
+    background-color: var(--secondary-color);
+    padding: 15px;
+    border-radius: var(--border-radius);
+    margin-bottom: 25px;
+    transition: background-color var(--transition-duration);
+}
+
+.container .calculator-selector {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.calculator-container .calculator-selector {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.selector-label {
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+    transition: color var(--transition-duration);
+}
+
+/* Button Grid for Home Page */
+.button-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
+
+.calculator-button {
+    background-color: var(--white);
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+    border-radius: var(--border-radius);
+    padding: 15px 25px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color var(--transition-duration), color var(--transition-duration), transform 0.2s, box-shadow var(--transition-duration);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.calculator-button:hover {
+    background-color: var(--primary-color);
+    color: var(--white);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.calculator-button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.calculator-button:focus {
+    outline: none; /* Remove default focus outline */
+    box-shadow: 0 0 0 3px rgba(58, 110, 165, 0.5); /* Add a custom focus indication */
+}
+
+.calculator-button i {
+    font-size: 1.3rem;
+}
+
+/* Button Hover Effect */
+.calculator-button.hovered {
+    animation: buttonHover 0.3s forwards;
+}
+
+@keyframes buttonHover {
+    0% {
+        transform: translateY(0);
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    50% {
+        transform: translateY(-5px);
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    }
+    100% {
+        transform: translateY(0);
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+/*  6. Form Styles                                                             */
+/* -------------------------------------------------------------------------- */
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: 8px;
+    display: block;
+    font-size: 1.2rem;
+    transition: color var(--transition-duration);
+}
+
+.form-control {
+    border: 2px solid #dde2e6;
+    border-radius: var(--border-radius);
+    padding: 15px;
+    font-size: 1.2rem;
+    transition: all var(--transition-duration);
+    width: 100%;
+    color: var(--text-color); /* Ensure text color is applied */
+    background-color: var(--white);  /* Ensure background is white */
+}
+
+.form-control:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(58, 110, 165, 0.25);
+    outline: none; /* Remove default focus outline */
+}
+
+.input-group-text {
+    background-color: var(--primary-color);
+    color: var(--white);
+    border: none;
+    font-size: 1.2rem;
+    padding: 15px;
+}
+
+/* -------------------------------------------------------------------------- */
+/*  7. Disclaimer and Info Sections                                          */
+/* -------------------------------------------------------------------------- */
+
+.disclaimer {
+    background-color: #e2f0fd;
+    border-left: 4px solid var(--primary-color);
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    font-size: 1.1rem;
+    transition: background-color var(--transition-duration), border-color var(--transition-duration);
+}
+
+.disclaimer i {
+    color: var(--primary-color);
+    margin-right: 10px;
+}
+
+.info-section {
+    background-color: #e2f0fd;
+    padding: 20px;
+    border-radius: var(--border-radius);
+    margin-bottom: 20px;
+    transition: background-color var(--transition-duration);
+}
+
+/* -------------------------------------------------------------------------- */
+/*  8. Toggle Switch Styles                                                   */
+/* -------------------------------------------------------------------------- */
+
+.toggle-switch {
+    text-align: center;
+    margin-bottom: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 70px;
+    height: 40px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 32px;
+    width: 32px;
+    left: 4px;
+    bottom: 4px;
+    background-color: var(--white);
+    transition: 0.4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: var(--primary-color);
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px var(--primary-color);
+    outline: none; /* Remove default focus outline */
+}
+
+input:checked + .slider:before {
+    transform: translateX(30px);
+}
+
+/* -------------------------------------------------------------------------- */
+/*  9. Results Table Styles                                                    */
+/* -------------------------------------------------------------------------- */
+
+.result-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-top: 20px;
+    overflow: hidden;
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.result-table th {
+    background-color: var(--primary-color);
+    color: var(--white);
+    font-weight: 600;
+    padding: 15px;
+    border: none;
+    text-align: left;
+    font-size: 1.2rem;
+}
+
+.result-table td {
+    padding: 15px;
+    border-bottom: 1px solid #dee2e6;
+    background-color: var(--white);
+    font-size: 1.2rem;
+    font-weight: bold;
+    transition: background-color var(--transition-duration), color var(--transition-duration);
+}
+
+.result-table tr:last-child td {
+    border-bottom: none;
+    background-color: var(--accent-color);
+    font-weight: bold;
+}
+
+.result-table tr:nth-child(even) td {
+    background-color: var(--secondary-color);
+}
+
+/* Green color and right alignment for amount values */
+.result-table td[id$="_value"],
+.result-table td[id$="_fee"],
+.result-table td[id$="_amount"],
+.result-table td[id$="_value_different"],
+.result-table td[id$="_fee_approved"],
+.result-table td[id$="_amount_approved"] {
+    color: green;
+    text-align: right;
+    padding-right: 20px;
+}
+
+/* Fade In Animation for Sections */
+.fade-in {
+    animation: fadeIn 0.5s ease-in-out forwards;
+}
+
+/* -------------------------------------------------------------------------- */
+/* 10. Footer Styles                                                          */
+/* -------------------------------------------------------------------------- */
+
+.footer {
+    font-size: 1rem;
+    color: var(--text-color-light);
+    text-align: center;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #dee2e6;
+    transition: color var(--transition-duration), border-color var(--transition-duration);
+}
+
+.developer-info {
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+    color: #555;
+    font-weight: bold;
+}
+
+.disclaimer-container {
+    font-size: 0.9rem;
+    color: var(--text-color-light);
+    margin-bottom: 10px;
+}
+
+.contact-info {
+    font-weight: 600;
+    color: var(--primary-color);
+    font-size: 1rem;
+}
+
+/* -------------------------------------------------------------------------- */
+/* 11. Navigation Button Styles                                                */
+/* -------------------------------------------------------------------------- */
+
+.navigation-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 25px;
+    position: relative;
+}
+
+.nav-button.home-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background-color: var(--primary-color);
+    color: var(--white);
+    padding: 12px 20px;
+    border-radius: var(--border-radius);
+    text-decoration: none;
+    font-weight: 600;
+    transition: all var(--transition-duration) ease;
+    box-shadow: var(--box-shadow);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.nav-button.home-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    transition: all 0.4s ease;
+    z-index: -1;
+}
+
+.nav-button.home-button:hover {
+    background-color: var(--primary-color-darker);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.nav-button.home-button:hover::before {
+    left: 0;
+}
+
+.nav-button.home-button:active {
+    transform: translateY(-1px);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+.nav-button.home-button i {
+    font-size: 1.2rem;
+    transition: transform var(--transition-duration) ease;
+}
+
+.nav-button.home-button:hover i {
+    transform: translateX(-3px);
+}
+
+/* Pulse Animation */
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(58, 110, 165, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(58, 110, 165, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(58, 110, 165, 0);
+    }
+}
+
+.pulse {
+    animation: pulse 1.5s infinite;
+}
+
+/* Ripple Animation */
+.nav-button .ripple {
+    position: absolute;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.4);
+    transform: scale(0);
+    animation: ripple 0.6s linear;
+    z-index: -1;
+}
+
+@keyframes ripple {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+/* 12. Responsive Design Adjustments                                            */
+/* -------------------------------------------------------------------------- */
+
+@media (max-width: 768px) {
+    .container,
+    .calculator-container {
+        margin: 15px;
+        padding: 15px;
+    }
+
+    .header-section {
+        margin: -15px -15px 15px -15px;
+        padding: 10px;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1.8rem;
+    }
+
+    .result-table th,
+    .result-table td {
+        padding: 12px;
+        font-size: 1.1rem;
+    }
+
+    .button-grid {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .calculator-button {
+        width: 100%;
+    }
+
+    .nav-button.home-button {
+        padding: 10px 15px;
+        font-size: 0.9rem;
+    }
+}
