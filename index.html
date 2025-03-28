@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <div class="container">
         <header class="header-section">
@@ -18,32 +20,41 @@
         <section class="calculator-selector">
             <h2 class="selector-label">Choose a Calculator:</h2>
             <div class="button-grid">
-              <a href="https://67d88898f8aae80840159ec5--symphonious-dango-c03eff.netlify.app/courtfee" class="calculator-button" aria-label="Court/Advocate Fee Calculator">
-                  <i class="fas fa-balance-scale"></i> Court/Advocate Fee Calculator
-              </a>
-              <a href="https://67d88898f8aae80840159ec5--symphonious-dango-c03eff.netlify.app/probate" class="calculator-button" aria-label="Probate Fee Calculator">
-                  <i class="fas fa-file-contract"></i> Probate Fee Calculator
-              </a>
-              <a href="https://parimalhodar.github.io/monthly_reports/" class="calculator-button" aria-label="Process Fee Calculator">
-                  <i class="fas fa-file-invoice-dollar"></i> Processing Excel Files(Monthly)
-              </a>
-              <a href="#" class="calculator-button" aria-label="Other Fee Calculator">
-                  <i class="fas fa-file-alt"></i> Other Fee Calculator
-              </a>
-              <a href="#" class="calculator-button" aria-label="Stamp Fee Calculator">
-                  <i class="fas fa-stamp"></i> Stamp Fee Calculator
-              </a>
+                <a href="https://67d88898f8aae80840159ec5--symphonious-dango-c03eff.netlify.app/courtfee"
+                    class="calculator-button" aria-label="Court/Advocate Fee Calculator"
+                    onclick="window.location.replace(this.href); return false;">
+                    <i class="fas fa-balance-scale"></i> Court/Advocate Fee Calculator
+                </a>
+                <a href="https://67d88898f8aae80840159ec5--symphonious-dango-c03eff.netlify.app/probate"
+                    class="calculator-button" aria-label="Probate Fee Calculator"
+                    onclick="window.location.replace(this.href); return false;">
+                    <i class="fas fa-file-contract"></i> Probate Fee Calculator
+                </a>
+                <a href="https://parimalhodar.github.io/monthly_reports/" class="calculator-button"
+                    aria-label="Process Fee Calculator">
+                    <i class="fas fa-file-invoice-dollar"></i> Processing Excel Files(Monthly)
+                </a>
+                <a href="#" class="calculator-button" aria-label="Other Fee Calculator">
+                    <i class="fas fa-file-alt"></i> Other Fee Calculator
+                </a>
+                <a href="#" class="calculator-button" aria-label="Stamp Fee Calculator">
+                    <i class="fas fa-stamp"></i> Stamp Fee Calculator
+                </a>
             </div>
         </section>
 
         <section class="info-section">
             <h2>Welcome to the Legal Fee Calculator</h2>
-            <p>Select a calculator above to estimate your legal fees based on the specific type of fee you need to calculate. Our calculators are designed to provide you with an approximate estimate, but always consult with legal professionals for accurate calculations.</p>
-            <p>We provide calculators for Court Fees, Advocate Fees, Process Fees, Probate Fees, and Stamp Fees. Click on the corresponding button to access the calculator you need.</p>
+            <p>Select a calculator above to estimate your legal fees based on the specific type of fee you need to
+                calculate. Our calculators are designed to provide you with an approximate estimate, but always consult
+                with legal professionals for accurate calculations.</p>
+            <p>We provide calculators for Court Fees, Advocate Fees, Process Fees, Probate Fees, and Stamp Fees. Click
+                on the corresponding button to access the calculator you need.</p>
         </section>
 
         <div class="disclaimer">
-            <i class="fas fa-info-circle"></i> This Legal Fee Calculator is for informational purposes only and does not carry any legal authority.  Consult with legal professionals for precise calculations.
+            <i class="fas fa-info-circle"></i> This Legal Fee Calculator is for informational purposes only and does not
+            carry any legal authority. Consult with legal professionals for precise calculations.
         </div>
     </div>
 
@@ -60,21 +71,28 @@
     </footer>
 
     <script>
-      // Button Hover Animation
-      document.querySelectorAll('.calculator-button').forEach(button => {
-          button.addEventListener('mouseover', () => {
-              button.classList.add('hovered');
-          });
-          button.addEventListener('mouseout', () => {
-              button.classList.remove('hovered');
-          });
-      });
+        // Button Hover Animation
+        document.querySelectorAll('.calculator-button').forEach(button => {
+            button.addEventListener('mouseover', () => {
+                button.classList.add('hovered');
+            });
+            button.addEventListener('mouseout', () => {
+                button.classList.remove('hovered');
+            });
 
-      // Initial Fade-In Animation
-      document.addEventListener('DOMContentLoaded', () => {
-          document.body.classList.add('fade-in');
-      });
+            // Add click handler for monthly reports
+            if (button.getAttribute('aria-label') === 'Process Fee Calculator') {
+                button.addEventListener('click', (e) => {
+                    window.location.href = 'https://parimalhodar.github.io/monthly_reports/';
+                });
+            }
+        });
 
+        // Initial Fade-In Animation
+        document.addEventListener('DOMContentLoaded', () => {
+            document.body.classList.add('fade-in');
+        });
     </script>
 </body>
+
 </html>
