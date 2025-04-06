@@ -20,25 +20,23 @@
         <section class="calculator-selector">
             <h2 class="selector-label">Choose a Calculator:</h2>
             <div class="button-grid">
-                <a href="https://67d88898f8aae80840159ec5--symphonious-dango-c03eff.netlify.app/courtfee"
-                    class="calculator-button" aria-label="Court/Advocate Fee Calculator"
-                    onclick="window.location.replace(this.href); return false;">
+                <a href="https://sheetlegal.netlify.app/courtfee" class="calculator-button"
+                    aria-label="Court/Advocate Fee Calculator">
                     <i class="fas fa-balance-scale"></i> Court/Advocate Fee Calculator
                 </a>
-                <a href="https://67d88898f8aae80840159ec5--symphonious-dango-c03eff.netlify.app/probate"
-                    class="calculator-button" aria-label="Probate Fee Calculator"
-                    onclick="window.location.replace(this.href); return false;">
+                <a href="https://sheetlegal.netlify.app/probate" class="calculator-button"
+                    aria-label="Probate Fee Calculator">
                     <i class="fas fa-file-contract"></i> Probate Fee Calculator
                 </a>
-                <a href="https://parimalhodar.github.io/monthly_reports/" class="calculator-button"
+                <a href="https://sheetlegal.netlify.app/excel" class="calculator-button"
                     aria-label="Process Fee Calculator">
-                    <i class="fas fa-file-invoice-dollar"></i> Processing Excel Files(Monthly)
+                    <i class="fas fa-file-invoice-dollar"></i> Excel Tools
                 </a>
                 <a href="#" class="calculator-button" aria-label="Other Fee Calculator">
-                    <i class="fas fa-file-alt"></i> Other Fee Calculator
+                    <i class="fas fa-file-alt"></i> Coming Soon-1
                 </a>
                 <a href="#" class="calculator-button" aria-label="Stamp Fee Calculator">
-                    <i class="fas fa-stamp"></i> Stamp Fee Calculator
+                    <i class="fas fa-stamp"></i> Coming Soon-2
                 </a>
             </div>
         </section>
@@ -79,19 +77,13 @@
             button.addEventListener('mouseout', () => {
                 button.classList.remove('hovered');
             });
-
-            // Add click handler for monthly reports
-            if (button.getAttribute('aria-label') === 'Process Fee Calculator') {
-                button.addEventListener('click', (e) => {
-                    window.location.href = 'https://parimalhodar.github.io/monthly_reports/';
-                });
-            }
         });
 
         // Initial Fade-In Animation
         document.addEventListener('DOMContentLoaded', () => {
             document.body.classList.add('fade-in');
         });
+
     </script>
 </body>
 
